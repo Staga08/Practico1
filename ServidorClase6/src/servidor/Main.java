@@ -94,7 +94,10 @@ public class Main implements OnMessageListener{
 			TCPConnection.getInstance().sendBroadcast(msg1);
 			TCPConnection.getInstance().sendBroadcast(msg);
 			
-			System.out.println("sale por mensaje privado");
+			TCPConnection.getInstance().sendBroadcast(msg);
+			TCPConnection.getInstance().sendBroadcast(msg1);
+			
+			
 		
 		}
 		

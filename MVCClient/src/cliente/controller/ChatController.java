@@ -89,23 +89,29 @@ public class ChatController implements OnMessageListener{
 							
 						}
 						
-						
 						if(ene!=null) {
 							if(ju.getId().equals(realReceiver)) {
 								String p= ""+ ju.getPuntaje();
 								referencia.getPuntaje().setText(p);
 								
 								referencia.getNombredT().setText(ene.getNombre());
+								System.out.println(ene.getNombre());
 								referencia.getApellidodT().setText(ene.getApellido());
 								referencia.getLugardT().setText(ene.getLugar());
 								referencia.getAnimaldT().setText(ene.getAnimal());
 								
 								
 								
+								
 							}
+							
+							
+						}
+						
+							
 						}
 					
-						}
+						
 						
 					
 				}

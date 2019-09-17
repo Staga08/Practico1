@@ -65,14 +65,22 @@ public class Chat extends Stage{
 		
 		
 		nombreT = new TextField();
+		nombreT.setText("");
 		apellidoT = new TextField();
+		apellidoT.setText("");
 		lugarT = new TextField();
+		lugarT.setText("");
 		animalT = new TextField();
+		animalT.setText("");
 		
 		nombredT = new TextField();
+		nombredT.setText("");
 		apellidodT = new TextField();
+		apellidodT.setText("");
 		lugardT = new TextField();
+		lugardT.setText("");
 		animaldT = new TextField();
+		animaldT.setText("");
 		
 		letra= new Label("");
 		nombre=new Label("NOMBRE");
