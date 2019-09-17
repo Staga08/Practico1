@@ -45,8 +45,8 @@ public class Chat extends Stage{
 	
 	
 	
-	private ComboBox listado;
-	ObservableList<String> items = FXCollections.observableArrayList();
+	private Label queSoy;
+	//ObservableList<String> items = FXCollections.observableArrayList();
 	
 	
 	
@@ -58,11 +58,11 @@ public class Chat extends Stage{
 		
 		
 		
-		items.addAll("P1", "P2");
+		//items.addAll("P1", "P2");
 
-		listado= new ComboBox(items);
+		//listado= new ComboBox(items);
 
-		
+		queSoy=new Label("No se ha podido establecer conexion");
 		
 		nombreT = new TextField();
 		nombreT.setText("");
@@ -106,7 +106,7 @@ public class Chat extends Stage{
 		VBox root = new VBox();
 		root.getChildren().add(instruccionesL);
 		root.getChildren().add(letra);
-		root.getChildren().add(listado);
+		root.getChildren().add(queSoy);
 		root.getChildren().add(nombre);
 		root.getChildren().add(nombreT);
 		root.getChildren().add(apellido);
@@ -128,7 +128,7 @@ public class Chat extends Stage{
 		root.getChildren().add(puntaje);
 		
 		
-		scene = new Scene(root,400,400);
+		scene = new Scene(root,500,500);
 		this.setScene(scene);
 		this.setTitle("Domi Games");
 		
@@ -244,21 +244,6 @@ public class Chat extends Stage{
 		this.puntaje = puntaje;
 	}
 
-	public ComboBox getListado() {
-		return listado;
-	}
-
-	public void setListado(ComboBox listado) {
-		this.listado = listado;
-	}
-
-	public ObservableList<String> getItems() {
-		return items;
-	}
-
-	public void setItems(ObservableList<String> items) {
-		this.items = items;
-	}
 
 	public Label getNombred() {
 		return nombred;
@@ -322,6 +307,14 @@ public class Chat extends Stage{
 
 	public void setAnimaldT(TextField animaldT) {
 		this.animaldT = animaldT;
+	}
+
+	public Label getQueSoy() {
+		return queSoy;
+	}
+
+	public void setQueSoy(Label queSoy) {
+		this.queSoy = queSoy;
 	}
 
 	

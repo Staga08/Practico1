@@ -13,7 +13,7 @@ public class Receiver extends Thread{
 	private InputStream is;
 	private boolean isAlive = true;
 	private BufferedReader breader;
-	
+	private int n= TCPConnection.getInstance().getNoMore();
 	public Receiver(InputStream is) {
 		this.is = is;
 		breader = new BufferedReader(new InputStreamReader(is));

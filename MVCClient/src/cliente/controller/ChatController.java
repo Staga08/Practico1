@@ -21,6 +21,7 @@ public class ChatController implements OnMessageListener{
 	private String selected;
 	private Juego ju;
 	private Juego ene;
+	private String queSoy;
 	
 	private String realReceiver = NONE;
 	public ChatController(Chat referencia) {
@@ -38,20 +39,20 @@ public class ChatController implements OnMessageListener{
 				(event)->{
 					
 					
-					Juego ju= new Juego(referencia.getNombreT().getText(), referencia.getApellidoT().getText(), referencia.getLugarT().getText(), referencia.getAnimalT().getText(), referencia.getPuntaje().getText(), realReceiver);
+					Juego ju= new Juego(referencia.getNombreT().getText(), referencia.getApellidoT().getText(), referencia.getLugarT().getText(), referencia.getAnimalT().getText(), referencia.getPuntaje().getText(), queSoy);
 					TCPConnection.getInstance().sendMessage(gson.toJson(ju));
 					p=false;
 				
 				}
 				);
 	
-		referencia.getListado().setOnAction(
-				(event)->{
-					int intName = referencia.getListado().getSelectionModel().getSelectedIndex();
-					System.out.println(""+intName);
-					realReceiver = referencia.getItems().get(intName);
-				}
-				);
+//		referencia.getListado().setOnAction(
+//				(event)->{
+//					int intName = referencia.getListado().getSelectionModel().getSelectedIndex();
+//					System.out.println(""+intName);
+//					realReceiver = referencia.getItems().get(intName);
+//				}
+//				);
 	
 	
 	}
@@ -62,7 +63,16 @@ public class ChatController implements OnMessageListener{
 	public void onMessage(String msg) {
 		Platform.runLater(
 				()->{
+					
 					System.out.println("Mensaje recibido: "+ msg);
+					
+					if(msg.contains("--" )) {
+						String[] a=msg.split("--");
+						
+						queSoy=a[0];
+						referencia.getQueSoy().setText(queSoy);
+					}
+					
 					
 					if(msg.contains("@")) {
 						String[] a=msg.split("@");
@@ -72,7 +82,7 @@ public class ChatController implements OnMessageListener{
 					
 					
 					if(msg.equals("AHORA") && p==true) {
-						Juego ju= new Juego(referencia.getNombreT().getText(), referencia.getApellidoT().getText(), referencia.getLugarT().getText(), referencia.getAnimalT().getText(), referencia.getPuntaje().getText(), realReceiver);
+						Juego ju= new Juego(referencia.getNombreT().getText(), referencia.getApellidoT().getText(), referencia.getLugarT().getText(), referencia.getAnimalT().getText(), referencia.getPuntaje().getText(), queSoy);
 						TCPConnection.getInstance().sendMessage(gson.toJson(ju));
 					}
 					

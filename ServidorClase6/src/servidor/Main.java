@@ -11,12 +11,14 @@ import servidor.comunicacion.Receiver.OnMessageListener;
 import servidor.comunicacion.TCPConnection;
 
 public class Main implements OnMessageListener{
-	
+	public final static String pl1="P1";
+	public final static String pl2="P2";
 	private Juego p1;
 	private Juego p2;
 	private int n=0;
 	private boolean mandado=true;
 	String adivina;
+	private int player=2;
 	
 	public static void main(String[] args) {
 		Main main = new Main();
@@ -36,6 +38,18 @@ public class Main implements OnMessageListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(player>0) {
+			if(player==2) {
+			TCPConnection.getInstance().sendBroadcast(pl1+"--");
+			}else {
+				TCPConnection.getInstance().sendBroadcast(pl2+"--");
+			}
+			player--;
+			}
+			
+		
+		
 		if(mandado) {
 			Random r= new Random();
 			int a= r.nextInt((90-65)+ 1)+ 65;

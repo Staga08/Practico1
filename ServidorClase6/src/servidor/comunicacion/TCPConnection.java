@@ -24,6 +24,7 @@ import servidor.comunicacion.Receiver.OnMessageListener;
 public class TCPConnection {
 	
 	private static TCPConnection instance;
+	private int noMore=0;
 
 	private TCPConnection() {
 		
@@ -70,8 +71,10 @@ public class TCPConnection {
 					
 					try {
 						server = new ServerSocket(puerto);
-						while(true) {
 						
+						
+						while(noMore<2) {
+							System.out.println(noMore);
 						System.out.println("Esperando conexi�n");
 						Socket socket = server.accept();
 						Connection c=  new Connection(socket);
@@ -79,6 +82,7 @@ public class TCPConnection {
 						System.out.println("Conexion aceptada");
 						c.init();
 						connections.add(c);
+						noMore++;
 						}
 						
 					} catch (IOException e) {
@@ -100,6 +104,14 @@ public class TCPConnection {
 			connections.get(i).sendMessage(line);
 		}
 		
+	}
+
+	public int getNoMore() {
+		return noMore;
+	}
+
+	public void setNoMore(int noMore) {
+		this.noMore = noMore;
 	}
 	
 	
