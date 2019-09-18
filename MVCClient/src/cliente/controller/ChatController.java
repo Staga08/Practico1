@@ -66,7 +66,7 @@ public class ChatController implements OnMessageListener{
 					
 					System.out.println("Mensaje recibido: "+ msg);
 					
-					if(msg.contains("--" )) {
+					if(msg.contains("--")&& referencia.getQueSoy().getText().length()!=2) {
 						String[] a=msg.split("--");
 						
 						queSoy=a[0];
@@ -94,13 +94,14 @@ public class ChatController implements OnMessageListener{
 //						System.out.println("ya desde el cliente");
 						Juego ju= g.fromJson(msg.trim(), Juego.class);
 						
-						if(ju.getId().compareTo(realReceiver)!=0) {
+						if(ju.getId().compareTo(queSoy)!=0) {
 							ene=ju;
 							
 						}
 						
 						if(ene!=null) {
-							if(ju.getId().equals(realReceiver)) {
+							if(ju.getId().equals(queSoy)) {
+								System.out.println("tu puntaje es: "+ju.getPuntaje());
 								String p= ""+ ju.getPuntaje();
 								referencia.getPuntaje().setText(p);
 								

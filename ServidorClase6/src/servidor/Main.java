@@ -16,12 +16,15 @@ public class Main implements OnMessageListener{
 	private Juego p1;
 	private Juego p2;
 	private int n=0;
+	private static int a;
 	private boolean mandado=true;
 	String adivina;
 	private int player=2;
 	
 	public static void main(String[] args) {
 		Main main = new Main();
+		Random r= new Random();
+		 a= r.nextInt((90-65)+ 1)+ 65;
 	}
 	
 	public Main() {
@@ -51,8 +54,7 @@ public class Main implements OnMessageListener{
 		
 		
 		if(mandado) {
-			Random r= new Random();
-			int a= r.nextInt((90-65)+ 1)+ 65;
+			
 			 adivina= a+"@" ;
 			 mandado=false;
 		}
@@ -90,14 +92,22 @@ public class Main implements OnMessageListener{
 				
 				System.out.println(p1.getId());
 				System.out.println(p2.getId());
-
-				String gg= ""+ evaluar(p1.getNombre(), p1.getApellido(), p1.getLugar(), p1.getAnimal(), p2.getNombre(), p2.getApellido(), p2.getLugar(), p2.getAnimal());
 				
+				int x1=evaluar(p1.getNombre(), p1.getApellido(), p1.getLugar(), p1.getAnimal(), p2.getNombre(), p2.getApellido(), p2.getLugar(), p2.getAnimal());
+				String gg= ""+ x1;
+				
+				
+				
+				int x2=evaluar(p2.getNombre(), p2.getApellido(), p2.getLugar(), p2.getAnimal(), p1.getNombre(), p1.getApellido(), p1.getLugar(), p1.getAnimal());
+				String g2= ""+ x2;
+				
+				if(x1>x2) {
+					gg+=" Ganaste";
+				}else {
+					g2+= " Ganaste";
+				}
 				
 				p1.setPuntaje(gg);
-				
-				String g2= ""+ evaluar(p2.getNombre(), p2.getApellido(), p2.getLugar(), p2.getAnimal(), p1.getNombre(), p1.getApellido(), p1.getLugar(), p1.getAnimal());
-				
 				p2.setPuntaje(g2);
 				
 			}
@@ -123,12 +133,20 @@ public class Main implements OnMessageListener{
 
 	public int evaluar(String nombre, String apellido, String lugar, String animal, String nombred, String apellidod, String lugard, String animald) {
 		int puntaje=0;
+		char adivina= (char) a;
+		
 		if(nombre.equals("")) {
 			puntaje+=0;
 		}
+		
+		else if(nombre.toUpperCase().charAt(0)!=adivina) {
+			puntaje+=-10;
+		}
+		
 		else {
 			if(nombre.equalsIgnoreCase(nombred)) {
 				puntaje+=50;
+			
 			}else {
 				puntaje+=100;
 			}
@@ -136,7 +154,12 @@ public class Main implements OnMessageListener{
 		
 		if(apellido.equals("")){
 			puntaje+=0;
-		}else {
+		}
+		else if(apellido.toUpperCase().charAt(0)!=adivina) {
+			puntaje+=-10;
+		}
+		
+		else {
 			if(apellido.equalsIgnoreCase(apellidod)) {
 				puntaje+=50;
 			}else {
@@ -147,7 +170,12 @@ public class Main implements OnMessageListener{
 		
 		if(lugar.equals("")) {
 			puntaje+=0;
-		}else {
+		}
+		else if(lugar.toUpperCase().charAt(0)!=adivina) {
+			puntaje+=-10;
+		}
+		
+		else {
 			if(lugar.equalsIgnoreCase(lugard)) {
 				puntaje+=50;
 			}else {
@@ -157,7 +185,12 @@ public class Main implements OnMessageListener{
 		
 		if(animal.equals("")) {
 			puntaje+=0;
-		}else {
+		}
+		else if(animal.toUpperCase().charAt(0)!=adivina) {
+			puntaje+=-10;
+		}
+		
+		else {
 			if(animal.equalsIgnoreCase(animald)) {
 				puntaje+=50;
 			}
