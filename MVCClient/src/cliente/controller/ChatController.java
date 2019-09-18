@@ -43,7 +43,7 @@ public class ChatController implements OnMessageListener{
 					TCPConnection.getInstance().sendMessage(gson.toJson(ju));
 					p=false;
 					
-					referencia.getStop().setDisable(false);
+					referencia.getStop().setDisable(true);
 				
 				}
 				);
@@ -86,7 +86,7 @@ public class ChatController implements OnMessageListener{
 					if(msg.equals("AHORA") && p==true) {
 						Juego ju= new Juego(referencia.getNombreT().getText(), referencia.getApellidoT().getText(), referencia.getLugarT().getText(), referencia.getAnimalT().getText(), referencia.getPuntaje().getText(), queSoy);
 						TCPConnection.getInstance().sendMessage(gson.toJson(ju));
-						referencia.getStop().setDisable(false);
+						referencia.getStop().setDisable(true);
 					}
 					
 					
